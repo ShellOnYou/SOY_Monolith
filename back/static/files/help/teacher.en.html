@@ -1,0 +1,151 @@
+<h2>Help for instructors</h2>
+
+<h4>General principle of this exercising tool</h4>
+<p>This tool allows to train students to shell on a Unix system. </p>
+
+<p>For students to be able to train by following exercises, they need to register to an exercise <b>session</b>.</p>
+
+<p>A <b>session</b> is defined by a <b>sequence</b> of exercices, with a starting and an ending date, 
+    together with one or two more parameters indicating:
+    <ul>
+        <li>for each exercise, if a given score is needed to be reached to access the next exercise 
+            (set it to 0 for a free acceess to the next exercise, whatever the score to the current exercise.</li>
+        <li>if the session is <i>timed</i>, meaning that a new exercise is available every day.</li>
+    </ul>
+</p> 
+
+<p>An exercise <b>sequence</b> is an ordered list of exercises 
+    chosen among the <i>available</i> exercises on the platform.
+    Each exercise sequence is associated with a <b>profile</b>
+ (an objective with a description). 
+    As for now, a profile is associated to a job 
+    (the more common student's goal is to become job-ready) and to 
+    a skill level for that job(<i>beginner</i>, ..., <i>expert</i>).
+    </p>
+
+
+
+<h4> Exercises</h4>
+
+<p>To fully grasp the following, instructors are advised to register to an existing <i>session</i> and try doing an exercise. 
+Knowing how students solve exercises will indeed clarify a lot in the exercise authoring process.</p>
+
+<p>All exercices follow the same operating mode:
+    <ol>
+      <li>the student gets an (html formatted) statement containing instructions and questions) <b>together with</b> a <i>question</i> archive file to download</li>
+      <li>the student downloads the archive and put on a unix system [<a href='#access_to_a_Unix_system'>1</a>]</li> 
+      <li>the student extracts the archive content and works in the corresponding folder hierarchy following instruction guidelines</li>
+      <li>the student creates an <i>answer</i> archive including the current content of the folder hierarchy that hopefully changed when following the exercise's instructions</li>
+      <li>the student submits the answer archive by uploading it on the platform</li>
+      <li> the platform analyzes the answer archive and indicates to the students good and bad things with respect to instructions that were given. 
+        The student also gets an overall success <i>score</i> for this submitted answer (from 0 to 100%).</li>
+    </ol>
+</p>
+<p>The student can submit other answers to the exercise as much as he/she want (in the period during which the exercise is available -- see session details above).
+    Every submitted answer is stored by the system, together with obtained feedback and score. Both the student and the instructor proposing the session can access details of the trials.
+</p>
+
+<h4>Possible actions for an instructor</h4>
+
+Your usage of the platform will usually go from 
+<ol>
+    <li>Creating exercises</li>
+    <li>Creating a sequence of exercises</li>
+    <li>Creating a session relying on a sequence</li>
+</ol>
+
+For the two first steps, you can re-use existing exercises and sequences (you have access to those authored by other instructors).
+
+<p>As an instructor you can: 
+    <ul>
+        <li>create exercices, edit or delete exercises <i>you</i> authored</li>
+        <li>create/edit/delete exercise sequences. </li> 
+        <li>create sessions and edit/delete those <i>you</i> created.</li> 
+        <li>see results of students registered to your sessions</li>
+    </ul>
+</p>
+
+<p style="color:#FF0000";>Warning: as an instructor, actions that you take on the platform can have important consequences for others.
+    Please think twice before doing edits/deletes operations. For instance, other instructors might have decided to use an exercise you proposed
+    in a session they planned. Exercise modifications will affect next students accessing the exercise. Currently exercise <i>sequences</i> are
+    common to all instructors, so changing the order of the exerices will affect students of all sessions referring to this exercise sequence. 
+    We encourage instructors to include their name in the sequence name or description, to let other instructors know they're using the sequence.
+</p>
+<p><i><small>In progress: we're currently working on a version where each instructor referring to an 
+    exercise of another instructor gets a distinct clone of the exercise, not to be affected
+    by changes made by other authors. A similar idea will avoid authors to temper with sequences
+    used by other authors.</small></i>
+</p>
+
+<h4>Authoring a new exercise</h4>
+
+<p>Each exercise is composed of:</p>
+<ul>
+    <li>A <i>template</i> statement in <code>HTML</code> format containing generic instructions for students</li>
+    <li>A <i>template</i> question archive in <code>.tar.gz</code> format</li>
+    <li>A <code>python</code> script to <b>generate</b> <i>individualized</i> 
+        student statements and question archive from the templates [<a href='#python'>2</a>]</li>
+    <li>A <code>python</code> script to <b>analyze</b> a student's answer archive [<a href='#python'>2</a>]</li>
+</ul>
+
+<p>To create an exercise, an instructor must provide all these elements. Though this can be done in several steps
+(an exercise <i>status</i> indicates whether the exercise is ready to be included in sessions).</p>
+
+<p>Additionnally, the instructor can indicate skills associated to the exercise. Obtaining top scores
+    to the exercise will allow students to earn the corresponding skill up to some level.
+</p>
+
+<p>The simplest student statement creation scripts can simply provide a mere copy of the 
+    template archive and statement.
+    But the power of such scripts lies in building different statements for different students, 
+    to provoke and promote discussions between peers and to avoid complete plagiarim of answers.</p>
+
+<p>It is recommended that all the content of the question archive be contained in a single folder 
+    (possibily with many subfolders) to group the elements on which the students will work.</p>
+
+   <p>Concerning questions contained in an exercise statement, it is possible to ask students
+    to write their answers in a file [such as <a href='#answers.txt'>2</a>] 
+    included in the question archive and to be completed by students. But, some questions just
+    consist in changing the archive (reorganizing folders, creating file, 
+    modifying permissions, ...).</p>
+ 
+ 
+<p> When a student submits an answer archive to an exercise, the <code>python</code> analyzing script 
+    is launched by the  platform and gets as input the <code>HTML</code> student statement 
+    (possiblly specific of the student), the <i>question</i> archive he/she was given at start
+    (that can also be specific) and the answer archive the student just uploaded.</p>
+
+<p>A python library is available to isntructors to reduce the production of boiler plate code. 
+    E.g., it provides current archive manipulation routines. The library is made available to both 
+    generating and analyzing scripts.</p>
+
+<p>Moreover, a <code>gitlab</code> repository regroups the material for existing exercises
+   (template archive, template statement, python scripts, answer archive examples). 
+   Instructors can access it by simple request.
+
+<hr/>
+<small>
+    <a id="access_to_a_Unix_system">
+                <p>[1] Where can students solve a exercise? 
+            <ul>
+                <li>on their computer or device from a terminal (Linux, Free-BSD, WSL2 on Windows)</li>
+                <li>on a website from their browser: several sites provide free access to Unix (real or emulated) systems 
+                    that allow files to be uploaded and downloaded (e.g., <a href="https://replit.com" target="_blank">replit.com</a>,
+                    <a href="https://cocalc.com/" target="_blank">CoCalc</a>, ...). 
+                    This is a little less comfortable but it allows them to work from the browser with nothing to change on their system
+                    when on a Windows OS.</li>
+            </ul>
+        </p>
+    </a>
+
+    <a id="python">
+        <p>[2] written in Python v2 (we plan to move to Python v3 depending on the demand)
+        </p></a>
+    
+
+    <a id="answers.txt">
+    <p>[3] typically in an <code>answers.txt</code> file whose content is preformarted, 
+        and that is located at the root of the hierarchy in the question archive.</p>
+    </a>
+
+    

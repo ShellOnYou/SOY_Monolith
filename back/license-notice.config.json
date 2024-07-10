@@ -1,0 +1,23 @@
+{
+    "ignore": ["static", "node_modules", "public", "**/Dockerfile-*", "**/Procfile*"],
+    "license": "NOTICE",
+    "licenseFormats": {
+        "js": {
+            "prepend": "/*",
+            "append": " */",
+            "eachLine": {
+                "prepend": " * "
+            }
+        },
+        "^Dockerfile|py": {
+            "eachLine": {
+                "prepend": "# "
+            }
+        },
+        "ejs|html": {
+            "prepend": "<!--",
+            "append": "-->"
+        }
+    },
+    "trailingWhitespace": "TRIM"
+}

@@ -1,0 +1,3892 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": " API",
+    "description": " API \n \n **/!\\ Complex types such as *Dates* or *bytea* are labeled as *String* in this documentation. The given string's format describes what complex data type it stands for. You can retrieve these details in Models' description section down below.** ",
+    "termsOfService": "None",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org"
+    }
+  },
+  "basePath": "/",
+  "paths": {
+    "/api/business-sessions": {
+      "get": {
+        "tags": ["Business session"],
+        "summary": "Return a list of all business sessions",
+        "description": "**Authorized roles [Teacher, Admin]**",
+        "operationId": "devGetSessions",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of business sessions",
+            "schema": {
+              "type": "array",
+              "items": {
+                "properties": {
+                  "ps_id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "p_id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "end_date": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "author": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "universe": {
+                    "type": "string"
+                  },
+                  "seq_id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "is_timed": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error: Autorization required"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/business-session": {
+      "post": {
+        "tags": ["Business session"],
+        "summary": "Create a business session",
+        "description": "**Authorized roles [Teacher, Admin]**",
+        "operationId": "devPostSession",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "PlageSession",
+            "in": "body",
+            "description": "A business session",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["p_id", "name", "author", "is_timed"],
+              "properties": {
+                "p_id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "author": {
+                  "type": "integer"
+                },
+                "start_date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "end_date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "universe": {
+                  "type": "string"
+                },
+                "seq_id": {
+                  "type": "number"
+                },
+                "is_timed": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Business session id",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ps_id": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error: Invalid request"
+          },
+          "401": {
+            "description": "Error: Autorization required"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/business-session/{sessionId}": {
+      "get": {
+        "tags": ["Business session"],
+        "summary": "Return one business session",
+        "description": "**Authorized roles [All]**",
+        "operationId": "devGetSessionId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "sessionId",
+            "in": "path",
+            "description": "Business session's id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A business session",
+            "schema": {
+              "properties": {
+                "ps_id": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "p_id": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "start_date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "end_date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "author": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "universe": {
+                  "type": "string"
+                },
+                "seq_id": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "is_timed": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error: Invalid request"
+          },
+          "401": {
+            "description": "Error: Autorization required"
+          },
+          "404": {
+            "description": "Error: Not found"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Business session"],
+        "summary": "Update a business session",
+        "description": "**Authorized roles [Teacher, Admin]**",
+        "operationId": "devPutSessionId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "sessionId",
+            "in": "path",
+            "description": "Business session's id",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "PlageSession",
+            "in": "body",
+            "description": "POST business session's body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "p_id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "secret_key": {
+                  "type": "string"
+                },
+                "start_date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "end_date": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "universe": {
+                  "type": "string"
+                },
+                "seq_id": {
+                  "type": "number"
+                },
+                "is_timed": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The updated business session",
+            "schema": {
+              "$ref": "#/definitions/PlageSession"
+            }
+          },
+          "400": {
+            "description": "Error: Invalid request"
+          },
+          "401": {
+            "description": "Error: Autorization required"
+          },
+          "404": {
+            "description": "Error: Not found"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Business session"],
+        "summary": "Delete a business session",
+        "description": "**Authorized roles [Teacher, Admin]**",
+        "operationId": "devDeleteSessionId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "sessionId",
+            "in": "path",
+            "description": "Business session's id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Business session deleted"
+          },
+          "401": {
+            "description": "Error: Autorization required"
+          },
+          "404": {
+            "description": "Error: Not found"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/user/{userId}/business-sessions": {
+      "get": {
+        "tags": ["Business session"],
+        "summary": "Return a list of business sessions",
+        "description": "**Authorized roles [All]**",
+        "operationId": "devGetUserSessions",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User's id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of business sessions for a given user",
+            "schema": {
+              "type": "array",
+              "items": {
+                "properties": {
+                  "ps_id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "p_id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "start_date": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "end_date": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "author": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "universe": {
+                    "type": "string"
+                  },
+                  "seq_id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "is_timed": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error: Invalid request"
+          },
+          "401": {
+            "description": "Error: Autorization required"
+          },
+          "404": {
+            "description": "Error: Not found"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/business-session/{sessionId}/exercises": {
+      "get": {
+        "tags": ["Business session"],
+        "summary": "Return a list of exercises",
+        "description": "**Authorized roles [All]**",
+        "operationId": "devGetSessionIdExercises",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "sessionId",
+            "in": "path",
+            "description": "Business session's id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The list of exercises for a given business session",
+            "schema": {
+              "type": "array",
+              "items": {
+                "properties": {
+                  "ex_id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "template_statement": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "object"
+                  },
+                  "author": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "statement_creation_script": {
+                    "type": "string",
+                    "format": "bytea"
+                  },
+                  "marking_script": {
+                    "type": "string",
+                    "format": "bytea"
+                  },
+                  "locale": {
+                    "type": "string",
+                    "format": "loc"
+                  },
+                  "ref_id": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error: Invalid request"
+          },
+          "401": {
+            "description": "Error: Autorization required"
+          },
+          "404": {
+            "description": "Error: Not found"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/business-session/{sessionId}/user/{userId}/exercise-productions": {
+      "get": {
+        "tags": ["Business session"],
+        "summary": "Return a list of exercise productions",
+        "description": "**Authorized roles [All]**",
+        "operationId": "devGetSessionIdUserIdExerciseProductions",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "sessionId",
+            "in": "path",
+            "description": "Business session's id",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User's id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The list of exercise productions for a given business session and a given user",
+            "schema": {
+              "type": "array",
+              "items": {
+                "properties": {
+                  "ep_id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "ex_id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "user_id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "comment": {
+                    "type": "string"
+                  },
+                  "is_final": {
+                    "type": "boolean"
+                  },
+                  "score": {
+                    "type": "number"
+                  },
+                  "processing_log": {
+                    "type": "string"
+                  },
+                  "working_time": {
+                    "type": "string"
+                  },
+                  "production_data": {
+                    "type": "string",
+                    "format": "bytea"
+                  },
+                  "submissiont_date": {
+                    "type": "string",
+                    "format": "datetime"
+                  },
+                  "statement": {
+                    "type": "string"
+                  },
+                  "file": {
+                    "format": "bytea",
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error: Invalid request"
+          },
+          "401": {
+            "description": "Error: Autorization required"
+          },
+          "404": {
+            "description": "Error: Not found"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/business-session/register": {
+      "post": {
+        "tags": ["Business session"],
+        "summary": "Register to a business session",
+        "description": "**Authorized roles [Student]**",
+        "operationId": "devRegisterSession",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Session",
+            "in": "body",
+            "description": "The session id and the secret key",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["ps_id"],
+              "properties": {
+                "ps_id": {
+                  "type": "integer"
+                },
+                "user_id": {
+                  "type": "interger"
+                },
+                "secret_key": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Business session id",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ps_id": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error: Invalid request"
+          },
+          "401": {
+            "description": "Error: Autorization required"
+          },
+          "404": {
+            "description": "Error: Not found"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/business-session/quit": {
+      "delete": {
+        "tags": ["Business session"],
+        "summary": "Quit a business session",
+        "description": "**Authorized roles [All]**",
+        "operationId": "devQuitSessionId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Session",
+            "in": "body",
+            "description": "The session id",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["ps_id"],
+              "properties": {
+                "ps_id": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Quit successful"
+          },
+          "401": {
+            "description": "Error: Autorization required"
+          },
+          "404": {
+            "description": "Error: Not found"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/business-profiles": {
+      "get": {
+        "tags": ["Business profile"],
+        "summary": "Return a list of all business profiles",
+        "description": "**Authorized roles [All]**",
+        "operationId": "devGetProfiles",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of business profiles",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Profile"
+              }
+            }
+          },
+          "401": {
+            "description": "Error: Autorization required"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/business-profile": {
+      "post": {
+        "tags": ["Business profile"],
+        "summary": "Create a business profile",
+        "description": "**Authorized roles [Teacher, Admin]**",
+        "operationId": "devPostProfile",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Profile",
+            "in": "body",
+            "description": "A business profile",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["job", "sector", "locale", "locale", "description"],
+              "properties": {
+                "job": {
+                  "type": "string"
+                },
+                "level": {
+                  "type": "string"
+                },
+                "sector": {
+                  "type": "string"
+                },
+                "locale": {
+                  "type": "string"
+                },
+                "ref_id": {
+                  "type": "integer"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Business profile id",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "p_id": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error: Invalid request"
+          },
+          "401": {
+            "description": "Error: Autorization required"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/business-profile/{profileId}": {
+      "get": {
+        "tags": ["Business profile"],
+        "summary": "Return one business profile",
+        "description": "**Authorized roles [All]**",
+        "operationId": "devGetProfileId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "profileId",
+            "in": "path",
+            "description": "Business profile's id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A business profile",
+            "schema": {
+              "$ref": "#/definitions/Profile"
+            }
+          },
+          "401": {
+            "description": "Error: Autorization required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Business profile"],
+        "summary": "Update a business profile",
+        "description": "**Authorized roles [Teacher, Admin]**",
+        "operationId": "devPutProfileId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "profileId",
+            "in": "path",
+            "description": "Business profile's id",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Profile",
+            "in": "body",
+            "description": "POST business profile's body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "job": {
+                  "type": "string"
+                },
+                "level": {
+                  "type": "string"
+                },
+                "sector": {
+                  "type": "string"
+                },
+                "locale": {
+                  "type": "string"
+                },
+                "ref_id": {
+                  "type": "integer"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The updated business profile",
+            "schema": {
+              "$ref": "#/definitions/Profile"
+            }
+          },
+          "400": {
+            "description": "Error: Invalid request"
+          },
+          "401": {
+            "description": "Error: Autorization required"
+          },
+          "404": {
+            "description": "Error: Not found"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Business profile"],
+        "summary": "Delete a business profile",
+        "description": "**Authorized roles [Teacher, Admin]**",
+        "operationId": "devDeleteProfileId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "profileId",
+            "in": "path",
+            "description": "Business profile's id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Business profile deleted"
+          },
+          "401": {
+            "description": "Error: Autorization required"
+          },
+          "404": {
+            "description": "Error: Not found"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/course": {
+      "post": {
+        "tags": ["Course"],
+        "summary": "[Different route already implemented] Create a new course",
+        "description": "*Different route already implemented* - __If used in the future, the actual route ('/API/course') should be replaced by this one.__",
+        "operationId": "courseAddCourseId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Course",
+            "in": "body",
+            "description": "The course's data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["c_id", "name", "available", "description"],
+              "properties": {
+                "c_id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "available": {
+                  "type": "boolean"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Course created",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "courseId": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error: Missing parameters"
+          },
+          "401": {
+            "description": "Error: Authorization required"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/api/course/user": {
+      "post": {
+        "tags": ["Course"],
+        "summary": "[Different route already implemented] Add a user to the specified course",
+        "description": "*Different route already implemented* - __If used in the future, the actual route ('/API/course/addUser') should be replaced by this one.__",
+        "operationId": "courseAddUserId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "CourseAndUserIds",
+            "in": "body",
+            "description": "Course and User ids",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["c_id", "user_id"],
+              "properties": {
+                "c_id": {
+                  "type": "integer"
+                },
+                "user_id": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User successfully added to the course",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "courseId": {
+                  "type": "integer"
+                },
+                "studentId": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error: Missing parameters"
+          },
+          "401": {
+            "description": "Error: Authorization required"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/api/course/{courseId}/users": {
+      "delete": {
+        "tags": ["Course"],
+        "summary": "[Different route already implemented] Delete all users from a course",
+        "description": "*Different route already implemented* - Deletes all users from a course which id is given in path. __If used in the future, the actual route ('/API/course/delAllUser/{c_id}') should be replaced by this one.__",
+        "operationId": "courseDellAllUserId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "description": "The course's id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Users successfully deteled from the course"
+          },
+          "400": {
+            "description": "Error: Missing parameters"
+          },
+          "401": {
+            "description": "Error: Authorization required"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/api/course/{courseId}": {
+      "get": {
+        "tags": ["Course"],
+        "summary": "[Different route already implemented] Get a course given its id",
+        "description": "*Different route already implemented* - Get a course given its id. __If used in the future, the actual route ('/API/course/{c_id}') should be replaced by this one.__",
+        "operationId": "courseGetCourseId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "description": "The course's id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The matching course",
+            "schema": {
+              "$ref": "#/definitions/Course"
+            }
+          },
+          "401": {
+            "description": "Error: Authorization required"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/api/user/{userId}/courses": {
+      "get": {
+        "tags": ["Course"],
+        "summary": "[Different route already implemented] Get the courses linked to an user given its id",
+        "description": "*Different route already implemented* - Get the courses linked to an user given its id. __If used in the future, the actual route ('/api/course/user/{user_id}') should be replaced by this one.__",
+        "operationId": "courseGetUserCoursesId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The user's id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The matching courses",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Course"
+              }
+            }
+          },
+          "401": {
+            "description": "Error: Authorization required"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/api/course/{courseId}/registered-users": {
+      "get": {
+        "tags": ["Course"],
+        "summary": "[Different route already implemented] Get the users registered to a course given its id",
+        "description": "*Different route already implemented* - Get the users registered to a course given its id. __If used in the future, the actual route ('/API/course/regUser/{c_id}') should be replaced by this one.__",
+        "operationId": "courseGetCoursesRegUsersId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "description": "The course's id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The matching users",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserPlage"
+              }
+            }
+          },
+          "401": {
+            "description": "Error: Authorization required"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/api/email/": {
+      "post": {
+        "tags": ["Email"],
+        "summary": "Sends an email",
+        "description": "Sends an email\n**Authorized roles: [All]** ",
+        "operationId": "emailPostId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "body",
+            "description": "The email's data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["sender", "recipient", "subject", "message"],
+              "properties": {
+                "key": {
+                  "type": "string"
+                },
+                "sender": {
+                  "type": "string"
+                },
+                "recipient": {
+                  "type": "string"
+                },
+                "subject": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The email has been successfully sent"
+          },
+          "400": {
+            "description": "Error: Invalid request"
+          },
+          "401": {
+            "description": "Error: Authorization required"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/exercises": {
+      "get": {
+        "tags": ["Exercise"],
+        "summary": "Return a list of all exercises",
+        "description": "**Authorized roles [Teacher, Admin]**",
+        "operationId": "devGetExercises",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of exercise",
+            "schema": {
+              "type": "array",
+              "items": {
+                "properties": {
+                  "ex_id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "template_statement": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "object"
+                  },
+                  "author": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "locale": {
+                    "type": "string",
+                    "format": "loc"
+                  },
+                  "ref_id": {
+                    "type": "integer",
+                    "format": "int32"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error: Autorization required"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/exercise": {
+      "post": {
+        "tags": ["Exercise"],
+        "summary": "Create an exercise",
+        "description": "**Authorized roles [Teacher, Admin]**",
+        "operationId": "devPostExercise",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Exercise",
+            "in": "body",
+            "description": "An exercise",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["state", "name", "locale"],
+              "properties": {
+                "template_statement": {
+                  "type": "string"
+                },
+                "template_archive": {
+                  "type": "string",
+                  "format": "bytea"
+                },
+                "state": {
+                  "type": "string"
+                },
+                "author": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "statement_creation_script": {
+                  "type": "string",
+                  "format": "bytea"
+                },
+                "marking_script": {
+                  "type": "string",
+                  "format": "bytea"
+                },
+                "locale": {
+                  "type": "string",
+                  "format": "loc"
+                },
+                "ref_id": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Exercise id",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ex_id": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error: Invalid request"
+          },
+          "401": {
+            "description": "Error: Autorization required"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/exercise/{exerciseId}": {
+      "get": {
+        "tags": ["Exercise"],
+        "summary": "Return one exercise",
+        "description": "**Authorized roles [All]**",
+        "operationId": "devGetExerciseId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "exerciseId",
+            "in": "path",
+            "description": "Exercice's id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An exercise",
+            "schema": {
+              "$ref": "#/definitions/Exercise"
+            }
+          },
+          "401": {
+            "description": "Error: Autorization required"
+          },
+          "404": {
+            "description": "Error: Not found"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Exercise"],
+        "summary": "Update an exercise",
+        "description": "**Authorized roles [Teacher, Admin]**",
+        "operationId": "devPutExerciseId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "exerciseId",
+            "in": "path",
+            "description": "Exercise's id",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "Exercise",
+            "in": "body",
+            "description": "POST Exercise's body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["state", "name", "locale"],
+              "properties": {
+                "template_statement": {
+                  "type": "string"
+                },
+                "template_archive": {
+                  "type": "string",
+                  "format": "bytea"
+                },
+                "state": {
+                  "type": "string"
+                },
+                "author": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "statement_creation_script": {
+                  "type": "string",
+                  "format": "bytea"
+                },
+                "marking_script": {
+                  "type": "string",
+                  "format": "bytea"
+                },
+                "locale": {
+                  "type": "string",
+                  "format": "loc"
+                },
+                "ref_id": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The updated exercise",
+            "schema": {
+              "$ref": "#/definitions/Exercise"
+            }
+          },
+          "400": {
+            "description": "Error: Invalid request"
+          },
+          "401": {
+            "description": "Error: Autorization required"
+          },
+          "404": {
+            "description": "Error: Not found"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Exercise"],
+        "summary": "Delete an exercise",
+        "description": "**Authorized roles [Teacher, Admin]**",
+        "operationId": "devDeleteExerciseId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "exerciseId",
+            "in": "path",
+            "description": "Exercise's id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Exercise deleted"
+          },
+          "401": {
+            "description": "Error: Autorization required"
+          },
+          "404": {
+            "description": "Error: Not found"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/exercise-production": {
+      "post": {
+        "tags": ["Exercise Production"],
+        "summary": "Creates a new exercise production",
+        "description": "*Different route already implemented* - Creates a new exercise production\n **Authorized roles : [All]**",
+        "operationId": "epPostCreateExerciseProductionId",
+        "consumes": ["multipart/form-data"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "exerciseProduction",
+            "in": "body",
+            "description": "The exercise production's data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["production_data"],
+              "properties": {
+                "ex_id": {
+                  "type": "integer"
+                },
+                "ps_id": {
+                  "type": "integer"
+                },
+                "user_id": {
+                  "type": "integer"
+                },
+                "is_final": {
+                  "type": "boolean"
+                },
+                "processing_log": {
+                  "type": "string"
+                },
+                "working_time": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          {
+            "name": "exerciseProductionFiles",
+            "in": "formData",
+            "description": "The exercise production's files",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The new exercise production's id",
+            "schema": {
+              "type": "object",
+              "required": ["ep_id"],
+              "properties": {
+                "ep_id": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error: Missing parameters"
+          },
+          "401": {
+            "description": "Error: Authorization required"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/exercise-production/{exerciseProductionId}": {
+      "get": {
+        "tags": ["Exercise Production"],
+        "summary": "Get an exercise production given its id",
+        "description": "*Different route already implemented* - Get an exercise production given its id\n **Authorized roles : [All]**",
+        "operationId": "epGetOneId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "exerciseProductionId",
+            "in": "path",
+            "description": "The exercise production id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The matching exercise production",
+            "schema": {
+              "$ref": "#/definitions/ExerciseProduction"
+            }
+          },
+          "401": {
+            "description": "Error: Authorization required"
+          },
+          "404": {
+            "description": "Error : Not found"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Exercise Production"],
+        "summary": "Delete an exercise production given its id",
+        "description": "Delete an exercise production given its id\n **Authorized roles : [All]**",
+        "operationId": "epDeleteOneId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "exerciseProductionId",
+            "in": "path",
+            "description": "The exercise production id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully deleted the exercise production"
+          },
+          "401": {
+            "description": "Error: Authorization required"
+          },
+          "404": {
+            "description": "Error: Not found"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/exercise-productions/exercise/{exerciseId}": {
+      "get": {
+        "tags": ["Exercise Production"],
+        "summary": "Get all exercise productions for an exercise given its id",
+        "description": "*Different route already implemented* - Get all exercise productions for an exercise given its id\n **Authorized roles : [All]**",
+        "operationId": "epGetExerciseExerciseProductionsId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "exerciseId",
+            "in": "path",
+            "description": "The exercise's id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The matching exercise productions",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "ep_id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "ex_id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "user_id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "comment": {
+                    "type": "string"
+                  },
+                  "is_final": {
+                    "type": "boolean"
+                  },
+                  "score": {
+                    "type": "number"
+                  },
+                  "processing_log": {
+                    "type": "string"
+                  },
+                  "working_time": {
+                    "type": "string"
+                  },
+                  "submissiont_date": {
+                    "type": "string",
+                    "format": "date"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error: Invalid request"
+          },
+          "401": {
+            "description": "Error: Authorization required"
+          },
+          "404": {
+            "description": "Error : Not found"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/exercise-productions/student/{userId}": {
+      "get": {
+        "tags": ["Exercise Production"],
+        "summary": "Get all exercise productions for a student given its id",
+        "description": "*Different route already implemented* - Get all exercise productions for a student given its id\n **Authorized roles : [All]**",
+        "operationId": "epGetUserExerciseProductionsId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The user's id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The matching exercise productions",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "ep_id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "ex_id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "user_id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "comment": {
+                    "type": "string"
+                  },
+                  "is_final": {
+                    "type": "boolean"
+                  },
+                  "score": {
+                    "type": "number"
+                  },
+                  "processing_log": {
+                    "type": "string"
+                  },
+                  "working_time": {
+                    "type": "string"
+                  },
+                  "submissiont_date": {
+                    "type": "string",
+                    "format": "date"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error: Authorization required"
+          },
+          "404": {
+            "description": "Error : Not found"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/exercise-productions/user/{userId}/exercise/{exerciseId}": {
+      "get": {
+        "tags": ["Exercise Production"],
+        "summary": "Return a list of exercise productions",
+        "description": "*Different route already implemented* - Get a list of exercise productions made by a user on an exercise\n **Authorized roles : [All]**",
+        "operationId": "devGetUserExerciseId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "exerciseId",
+            "in": "path",
+            "description": "Exercice's id",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User's id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of exercise production for a student and for 1 exercise",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "ep_id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "ex_id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "user_id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "comment": {
+                    "type": "string"
+                  },
+                  "is_final": {
+                    "type": "boolean"
+                  },
+                  "score": {
+                    "type": "number"
+                  },
+                  "processing_log": {
+                    "type": "string"
+                  },
+                  "working_time": {
+                    "type": "string"
+                  },
+                  "submissiont_date": {
+                    "type": "string",
+                    "format": "date"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error: Invalid request"
+          },
+          "401": {
+            "description": "Error: Autorization required"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/exercise-production/evaluate": {
+      "post": {
+        "tags": ["Exercise Production"],
+        "summary": "Return a score and comment for a submited exercise",
+        "description": "Return a score and comment for a submited exercise **Authorized roles [All]**",
+        "operationId": "epGetResponseSubmitedExerciseId",
+        "consumes": ["multipart/form-data"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "exerciseProduction",
+            "in": "body",
+            "description": "The exercise production, the exercise'id, the statement and the exercise's template_archive",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["ex_id", "statement"],
+              "properties": {
+                "ex_id": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          {
+            "name": "production_data",
+            "in": "formData",
+            "description": "The student's production data",
+            "required": true,
+            "type": "file"
+          },
+          {
+            "name": "template_archive",
+            "in": "formData",
+            "description": "The exercise's template archive",
+            "required": true,
+            "type": "file"
+          },
+          {
+            "name": "statement",
+            "in": "formData",
+            "description": "The exercise's statement",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Score and statement getted",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "score": {
+                  "type": "number"
+                },
+                "comment": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error: Missing parameters"
+          },
+          "401": {
+            "description": "Error: Authorization required"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/exercise-production/{exerciseId}/generate": {
+      "get": {
+        "tags": ["Exercise Production"],
+        "summary": "Generate a question archive for an exercise",
+        "description": "Generate a question archive for an exercise **Authorized roles [All]**\n**Improvment to make : This route sends back a .tar archive but should send back a .tar.gz archive**",
+        "operationId": "epGetGenerateExerciseId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "exerciseId",
+            "in": "path",
+            "description": "Exercice's id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Question archive generated",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "template_archive": {
+                  "format": "bytea",
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authorization required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/sequence": {
+      "post": {
+        "tags": ["Sequence"],
+        "summary": "Creates a new sequence",
+        "description": "*Different route already implemented : ('/sequence')* - Creates a new sequence\n **Authorized roles : [Enseignant, Admin]**",
+        "operationId": "sequencePostCreateSequenceId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "exercise",
+            "in": "body",
+            "description": "The sequence's related exercise",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "exercises": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/SequenceExercise"
+                  }
+                },
+                "profile_id": {
+                  "type": "integer"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Sequence successfully created",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "seq_id": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error: Missing parameters"
+          },
+          "401": {
+            "description": "Error: Authorization required"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/sequences": {
+      "get": {
+        "tags": ["Sequence"],
+        "summary": "Retrieve all sequences",
+        "description": "Retrieve all sequences\n **Authorized roles : [Enseignant, Admin]**",
+        "operationId": "sequenceGetAllSequences",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Sequences successfully retrieved",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "sequence_id": {
+                    "type": "integer"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "exercises": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "exercise_id": {
+                          "type": "integer"
+                        },
+                        "rank": {
+                          "type": "integer"
+                        },
+                        "min_rating": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error: Authorization required"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/sequence/{sequenceId}": {
+      "get": {
+        "tags": ["Sequence"],
+        "summary": "Get one specific sequence",
+        "description": "*Different route already implemented* - Get one specific sequence, given its id.\n **Authorized roles : [Enseignant, Admin]**",
+        "operationId": "sequenceGetOneSequenceId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "sequenceId",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sequence succesfully retrieved",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "sequence_id": {
+                  "type": "integer"
+                },
+                "exercises": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/SequenceExercise"
+                  }
+                },
+                "profile_id": {
+                  "type": "integer"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error: Authorization required"
+          },
+          "404": {
+            "description": "Error : Not found"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Sequence"],
+        "summary": "Updates a sequence",
+        "description": "*Different route already implemented* - Updates a sequence.\n **Authorized roles : [Enseignant, Admin]**\n**We can't update only some fields using that route. Must send the complete sequence's data because of how back-end is implemented.**",
+        "operationId": "sequencePutUpdateSequenceId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "sequenceId",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "sequenceData",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "exercises": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/SequenceExercise"
+                  }
+                },
+                "profile_id": {
+                  "type": "integer"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sequence succesfully updated",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "sequence_id": {
+                  "type": "integer"
+                },
+                "exercises": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/SequenceExercise"
+                  }
+                },
+                "profile_id": {
+                  "type": "integer"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error: Missing parameters"
+          },
+          "401": {
+            "description": "Error: Authorization required"
+          },
+          "404": {
+            "description": "Error : Not found"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Sequence"],
+        "summary": "Deletes a sequence",
+        "description": "*Different route already implemented* - Deletes a sequence\n **Authorized roles : [Enseignant, Admin]**",
+        "operationId": "sequenceDeleteId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "sequenceId",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sequence succesfully deleted"
+          },
+          "401": {
+            "description": "Error: Authorization required"
+          },
+          "404": {
+            "description": "Error : Not found"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/sequence/{sequenceId}/exercises": {
+      "get": {
+        "tags": ["Sequence"],
+        "summary": "Get all the exercises that compose a sequence",
+        "description": "*Different route already implemented* - Get all the exercises that compose a sequence, given its id.\n **Authorized roles : [Enseignant, Admin]**",
+        "operationId": "sequenceGetSequenceExercisesId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "sequenceId",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sequence's exercises succesfully retrieved",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "exercises": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Exercise"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Error: Authorization required"
+          },
+          "404": {
+            "description": "Error : Not found"
+          },
+          "500": {
+            "description": "Error: Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/skills": {
+      "get": {
+        "tags": ["Skill"],
+        "summary": "Get all skills by locale",
+        "description": "Get all skills by locale **Authorized roles [All]**",
+        "operationId": "skillGetSkillsLocaleId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "locale",
+            "format": "loc",
+            "type": "string",
+            "required": true,
+            "description": "Skill's locale"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All skills matching locale returned",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Skill"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Authorization required"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/exercise/{exerciseId}/skills": {
+      "post": {
+        "tags": ["Skill"],
+        "summary": "Add existing skills to an exercise",
+        "description": "Add existing skills to an exercise **Authorized roles [Teacher, Admin]**",
+        "operationId": "skillPostExerciseSkillsId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "exerciseId",
+            "type": "integer",
+            "required": true,
+            "description": "Numeric ID of the exercise."
+          },
+          {
+            "name": "ExerciseSkill",
+            "in": "body",
+            "description": "Exercises levels",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "required": ["skill_code", "name_id"],
+                "type": "object",
+                "properties": {
+                  "skill_code": {
+                    "type": "string"
+                  },
+                  "nam_id": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Skills added to the Exercise",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ExerciseLevel"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Authorization required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Skill"],
+        "summary": "Get all skills by locale for an exercise",
+        "description": "Get all skills by locale for an exercise **Authorized roles [All]**",
+        "operationId": "skillGetExerciseSkillsLocaleId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "exerciseId",
+            "type": "integer",
+            "required": true,
+            "description": "Numeric ID of the exercise."
+          },
+          {
+            "in": "query",
+            "name": "locale",
+            "format": "loc",
+            "type": "string",
+            "description": "Skill's locale"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Exercise Skills",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "Skill": {
+                    "$ref": "#/definitions/Skill"
+                  },
+                  "ExerciseLevel": {
+                    "$ref": "#/definitions/ExerciseLevel"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Authorization required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Skill"],
+        "summary": "Update all skills by locale for an exercise",
+        "description": "Update all skills by locale for an exercise **Authorized roles [Teacher, Admin]**",
+        "operationId": "skillPutExerciseSkillsLocaleId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "exerciseId",
+            "type": "integer",
+            "required": true,
+            "description": "Numeric ID of the exercise."
+          },
+          {
+            "in": "query",
+            "name": "locale",
+            "format": "loc",
+            "type": "string",
+            "description": "Skill's locale"
+          },
+          {
+            "name": "Skills",
+            "in": "body",
+            "description": "Skills update",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "th_id": {
+                  "type": "integer"
+                },
+                "description": {
+                  "format": "text",
+                  "type": "string"
+                },
+                "ref_code": {
+                  "type": "string"
+                },
+                "locale": {
+                  "format": "loc",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Exercise Skills",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "Skill": {
+                    "$ref": "#/definitions/Skill"
+                  },
+                  "ExerciseLevel": {
+                    "$ref": "#/definitions/ExerciseLevel"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Authorization required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Skill"],
+        "summary": "Delete all skills for an exercise",
+        "description": "Delete all skills for an exercise **Authorized roles [Teacher, Admin]**",
+        "operationId": "skillDeleteExerciseSkillsId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "exerciseId",
+            "type": "integer",
+            "required": true,
+            "description": "Numeric ID of the exercise."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Skills deleted"
+          },
+          "401": {
+            "description": "Authorization required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/skill": {
+      "post": {
+        "tags": ["Skill"],
+        "summary": "Create a skill",
+        "description": "Create a skill **Authorized roles [Teacher, Admin]**",
+        "operationId": "skillPostskillCode",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Skill",
+            "in": "body",
+            "description": "Skill's body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["skill_code", "name", "th_id", "locale"],
+              "properties": {
+                "skill_code": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "th_id": {
+                  "type": "integer"
+                },
+                "description": {
+                  "format": "text",
+                  "type": "string"
+                },
+                "ref_code": {
+                  "type": "string"
+                },
+                "locale": {
+                  "format": "loc",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Skill created",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "skill_code": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Authorization required"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/skill/{skillCode}": {
+      "get": {
+        "tags": ["Skill"],
+        "summary": "Get a skill",
+        "description": "Get a skill **Authorized roles [All]**",
+        "operationId": "skillGetskillCode",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "skillCode",
+            "type": "string",
+            "required": true,
+            "description": "Skill's id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Skill returned",
+            "schema": {
+              "$ref": "#/definitions/Skill"
+            }
+          },
+          "401": {
+            "description": "Authorization required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Skill"],
+        "summary": "Update a skill",
+        "description": "Update a skill **Authorized roles [Teacher, Admin]**",
+        "operationId": "skillPutskillCode",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "skillCode",
+            "type": "string",
+            "required": true,
+            "description": "Skill's id"
+          },
+          {
+            "name": "Skill",
+            "in": "body",
+            "description": "Skill's body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "th_id": {
+                  "type": "integer"
+                },
+                "description": {
+                  "format": "text",
+                  "type": "string"
+                },
+                "ref_code": {
+                  "type": "string"
+                },
+                "locale": {
+                  "format": "loc",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Skill created",
+            "schema": {
+              "$ref": "#/definitions/Skill"
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Authorization required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Skill"],
+        "summary": "Delete a skill",
+        "description": "Delete a skill **Authorized roles [Teacher, Admin]**",
+        "operationId": "skillDeleteskillCode",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "skillCode",
+            "type": "string",
+            "required": true,
+            "description": "Skill's id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Skill deleted"
+          },
+          "401": {
+            "description": "Authorization required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/student-statement": {
+      "post": {
+        "tags": ["StudentStatement"],
+        "summary": "Add a user's statement to a PlageSession's exercise",
+        "description": "Add a user's statement to a PlageSession's exercise **Authorized roles [Teacher, Admin]**",
+        "operationId": "studentStatementPostExerciseUserId",
+        "consumes": ["multipart/form-data"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "StudentStatement",
+            "in": "body",
+            "description": "Add a PlageSession's exercise to a user's body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["ps_id", "user_id", "ex_id", "deadline_date", "is_sended"],
+              "properties": {
+                "ps_id": {
+                  "type": "integer"
+                },
+                "user_id": {
+                  "type": "integer"
+                },
+                "ex_id": {
+                  "type": "integer"
+                },
+                "availability_date": {
+                  "format": "date",
+                  "type": "string"
+                },
+                "deadline_date": {
+                  "format": "date",
+                  "type": "string"
+                },
+                "is_sended": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "The associated file",
+            "required": true,
+            "type": "file"
+          },
+          {
+            "name": "statement",
+            "in": "formData",
+            "description": "The exercise's statement",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Exercise added to user",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ps_id": {
+                  "type": "integer"
+                },
+                "user_id": {
+                  "type": "integer"
+                },
+                "ex_id": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Authorization required"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/student-statement/user/{userId}/exercise/{exerciseId}/business-session/{businessSessionId}": {
+      "get": {
+        "tags": ["StudentStatement"],
+        "summary": "Return a StudentStatement",
+        "description": "Return a StudentStatement **Authorized roles [All]**",
+        "operationId": "studentStatementGetStudentStatementId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "type": "integer",
+            "required": true,
+            "description": "User's id"
+          },
+          {
+            "in": "path",
+            "name": "exerciseId",
+            "type": "integer",
+            "required": true,
+            "description": "Exercise's id"
+          },
+          {
+            "in": "path",
+            "name": "businessSessionId",
+            "type": "integer",
+            "required": true,
+            "description": "Business-Session's id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "StudentStatement getted",
+            "schema": {
+              "$ref": "#/definitions/StudentStatement"
+            }
+          },
+          "401": {
+            "description": "Authorization required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": ["StudentStatement"],
+        "summary": "Update a StudentStatement",
+        "description": "Update a StudentStatement **Authorized roles [Teacher, Admin]**",
+        "operationId": "studentStatementPutStudentStatementId",
+        "consumes": ["multipart/form-data"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "type": "integer",
+            "required": true,
+            "description": "User's id"
+          },
+          {
+            "in": "path",
+            "name": "exerciseId",
+            "type": "integer",
+            "required": true,
+            "description": "Exercise's id"
+          },
+          {
+            "in": "path",
+            "name": "businessSessionId",
+            "type": "integer",
+            "required": true,
+            "description": "Business-Session's id"
+          },
+          {
+            "name": "StudentStatement",
+            "in": "body",
+            "description": "Add a PlageSession's exercise to a user's body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["ps_id", "user_id", "ex_id"],
+              "properties": {
+                "availability_date": {
+                  "format": "date",
+                  "type": "string"
+                },
+                "deadline_date": {
+                  "format": "date",
+                  "type": "string"
+                },
+                "is_sended": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "The associated file",
+            "required": true,
+            "type": "file"
+          },
+          {
+            "name": "statement",
+            "in": "formData",
+            "description": "The exercise's statement",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Exercise added to user",
+            "schema": {
+              "$ref": "#/definitions/StudentStatement"
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Authorization required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/user": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Create a User",
+        "description": "Create a User **Authorized roles [All]**",
+        "operationId": "userPostUserId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "User",
+            "in": "body",
+            "description": "Register User's body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "firstname",
+                "lastname",
+                "student_number",
+                "email",
+                "password",
+                "organization",
+                "country",
+                "locale",
+                "tdgroup"
+              ],
+              "properties": {
+                "firstname": {
+                  "type": "string"
+                },
+                "lastname": {
+                  "type": "string"
+                },
+                "student_number": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "organization": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "locale": {
+                  "format": "loc",
+                  "type": "string"
+                },
+                "tdgroup": {
+                  "type": "string"
+                },
+                "avatar": {
+                  "format": "bytea",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User created",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user_id": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Authorization required"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/users": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Get all users",
+        "description": "Get all users **Authorized roles [Admin]**",
+        "operationId": "adminGetUsersId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "List of users",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "type": "integer"
+                  },
+                  "lastname": {
+                    "type": "string"
+                  },
+                  "firstname": {
+                    "type": "string"
+                  },
+                  "tdgroup": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "avatar": {
+                    "format": "bytea",
+                    "type": "string"
+                  },
+                  "organization": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "type": "string"
+                  },
+                  "locale": {
+                    "format": "loc",
+                    "type": "string"
+                  },
+                  "student_number": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "object",
+                    "properties": {
+                      "role_id": {
+                        "type": "integer"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authorization required"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/user/{userId}": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Get the user",
+        "description": "Get the user **Authorized roles [All]**",
+        "operationId": "userGetUserId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User's id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User getted",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "lastname": {
+                  "type": "string"
+                },
+                "firstname": {
+                  "type": "string"
+                },
+                "tdgroup": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "enabled": {
+                  "type": "boolean"
+                },
+                "role_id": {
+                  "type": "integer"
+                },
+                "avatar": {
+                  "format": "bytea",
+                  "type": "string"
+                },
+                "organization": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "locale": {
+                  "format": "loc",
+                  "type": "string"
+                },
+                "student_number": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authorization required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": ["User"],
+        "summary": "Update a user",
+        "description": "Update a user **Authorized roles [Teacher, Admin]**",
+        "operationId": "userPutUserId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User's id",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "User",
+            "in": "body",
+            "description": "Register User's body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "lastname": {
+                  "type": "string"
+                },
+                "firstname": {
+                  "type": "string"
+                },
+                "tdgroup": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "enabled": {
+                  "type": "boolean"
+                },
+                "role_id": {
+                  "type": "integer"
+                },
+                "avatar": {
+                  "format": "bytea",
+                  "type": "string"
+                },
+                "organization": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "locale": {
+                  "format": "loc",
+                  "type": "string"
+                },
+                "student_number": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User updated",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user_id": {
+                  "type": "integer"
+                },
+                "lastname": {
+                  "type": "string"
+                },
+                "firstname": {
+                  "type": "string"
+                },
+                "tdgroup": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "enabled": {
+                  "type": "boolean"
+                },
+                "role_id": {
+                  "type": "integer"
+                },
+                "avatar": {
+                  "format": "bytea",
+                  "type": "string"
+                },
+                "organization": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "locale": {
+                  "format": "loc",
+                  "type": "string"
+                },
+                "student_number": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Authorization required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["User"],
+        "summary": "Delete a user",
+        "description": "Delete the user **Authorized roles [All]**",
+        "operationId": "userDeleteUserId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User's id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User deleted"
+          },
+          "401": {
+            "description": "Authorization required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/user/{userId}/profile": {
+      "put": {
+        "tags": ["User"],
+        "summary": "Update the user profile",
+        "description": "Update the user profile **Authorized roles [All]**",
+        "operationId": "userPutUserProfileId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User's id",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "User",
+            "in": "body",
+            "description": "User's profile body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "lastname": {
+                  "type": "string"
+                },
+                "firstname": {
+                  "type": "string"
+                },
+                "tdgroup": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "avatar": {
+                  "format": "bytea",
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "organization": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "locale": {
+                  "format": "loc",
+                  "type": "string"
+                },
+                "student_number": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User's profile updated",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "lastname": {
+                  "type": "string"
+                },
+                "firstname": {
+                  "type": "string"
+                },
+                "tdgroup": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "avatar": {
+                  "format": "bytea",
+                  "type": "string"
+                },
+                "organization": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "locale": {
+                  "format": "loc",
+                  "type": "string"
+                },
+                "student_number": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Authorization required"
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/user/login": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Log in a user",
+        "description": "Log in a user **Authorized roles [All]**",
+        "operationId": "userLoginUserId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "User",
+            "in": "body",
+            "description": "Log in User's body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["email", "password"],
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User logged in",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user_id": {
+                  "type": "integer"
+                },
+                "token": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Authorization required"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/user/logout": {
+      "delete": {
+        "tags": ["User"],
+        "summary": "Log out the current user",
+        "description": "Log out the current user **Authorized roles [All]**",
+        "operationId": "userDeleteLogoutId",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "User logged out"
+          },
+          "401": {
+            "description": "Authorization required"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Course": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "available": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "Exercise": {
+      "type": "object",
+      "properties": {
+        "ex_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "template_statement": {
+          "type": "string"
+        },
+        "template_archive": {
+          "type": "string",
+          "format": "bytea"
+        },
+        "state": {
+          "type": "object"
+        },
+        "author": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "statement_creation_script": {
+          "type": "string",
+          "format": "bytea"
+        },
+        "marking_script": {
+          "type": "string",
+          "format": "bytea"
+        },
+        "locale": {
+          "type": "string",
+          "format": "loc"
+        },
+        "ref_id": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "ExerciseLevel": {
+      "type": "object",
+      "properties": {
+        "skill_code": {
+          "type": "string"
+        },
+        "ex_id": {
+          "type": "integer"
+        },
+        "nam_id": {
+          "type": "integer"
+        }
+      }
+    },
+    "ExerciseProduction": {
+      "type": "object",
+      "properties": {
+        "ep_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ex_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "user_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "is_final": {
+          "type": "boolean"
+        },
+        "score": {
+          "type": "number"
+        },
+        "processing_log": {
+          "type": "string"
+        },
+        "working_time": {
+          "type": "string"
+        },
+        "production_data": {
+          "type": "string",
+          "format": "bytea"
+        },
+        "submissiont_date": {
+          "type": "string",
+          "format": "datetime"
+        }
+      }
+    },
+    "PlageSession": {
+      "type": "object",
+      "properties": {
+        "ps_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "p_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "secret_key": {
+          "type": "string"
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "author": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "description": {
+          "type": "string"
+        },
+        "universe": {
+          "type": "string"
+        },
+        "seq_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "is_timed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Profile": {
+      "type": "object",
+      "properties": {
+        "p_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "job": {
+          "type": "string"
+        },
+        "level": {
+          "type": "string"
+        },
+        "sector": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "ref_id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "locale": {
+          "type": "string",
+          "format": "loc"
+        }
+      }
+    },
+    "SequenceExercise": {
+      "type": "object",
+      "properties": {
+        "exercise_id": {
+          "type": "integer"
+        },
+        "rank": {
+          "type": "integer"
+        },
+        "min_rating": {
+          "type": "integer"
+        }
+      }
+    },
+    "Skill": {
+      "type": "object",
+      "properties": {
+        "skill_code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "th_id": {
+          "default": 1,
+          "type": "integer"
+        },
+        "description": {
+          "format": "text",
+          "type": "string"
+        },
+        "ref_code": {
+          "type": "string"
+        },
+        "locale": {
+          "format": "loc",
+          "type": "string"
+        }
+      }
+    },
+    "StudentStatement": {
+      "type": "object",
+      "properties": {
+        "ps_id": {
+          "type": "integer"
+        },
+        "user_id": {
+          "type": "integer"
+        },
+        "ex_id": {
+          "type": "integer"
+        },
+        "availability_date": {
+          "format": "date",
+          "type": "string"
+        },
+        "deadline_date": {
+          "format": "date",
+          "type": "string"
+        },
+        "is_sended": {
+          "type": "boolean"
+        },
+        "statement": {
+          "type": "string"
+        },
+        "file": {
+          "format": "bytea",
+          "type": "string"
+        }
+      }
+    },
+    "UserPlage": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer"
+        },
+        "lastname": {
+          "type": "string"
+        },
+        "firstname": {
+          "type": "string"
+        },
+        "tdgroup": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "role_id": {
+          "type": "integer"
+        },
+        "avatar": {
+          "format": "bytea",
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "organization": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "locale": {
+          "format": "loc",
+          "type": "string"
+        },
+        "student_number": {
+          "type": "string"
+        },
+        "nonce": {
+          "type": "string"
+        },
+        "salt": {
+          "type": "string"
+        }
+      }
+    },
+    "UserRole": {
+      "type": "object",
+      "properties": {
+        "role_id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

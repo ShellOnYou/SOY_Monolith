@@ -1,0 +1,314 @@
+{
+    "Compétences": [
+        {
+            "code": "AU1",
+            "nom": "Login / Password",
+            "Thème": "0"
+        },
+        {
+            "code": "AU2",
+            "nom": "Taper des commandes dans un \"terminal\"",
+            "Thème": "0"
+        },
+        {
+            "code": "AU3",
+            "nom": "Demander de l'aide sur une commande",
+            "Thème": "0"
+        },
+        {
+            "code": "AU4",
+            "nom": "Utiliser les raccourcis claviers dans un terminal",
+            "Thème": "0"
+        },
+        {
+            "code": "AU5",
+            "nom": "Accéder/lancer un OS linux (via W10, dual boot, VM, syst. distant)",
+            "Thème": "0"
+        },
+        {
+            "code": "AU8",
+            "nom": "Accéder à l'historique des commandes",
+            "Thème": "0"
+        },
+        {
+            "code": "AU9",
+            "nom": "Gérer son prompt (invite de commande)",
+            "Thème": "0"
+        },
+        {
+            "code": "GF1",
+            "nom": "Connaître le chemin relatif ou absolu de fichiers",
+            "Thème": "1"
+        },
+        {
+            "code": "GF2",
+            "nom": "Se rendre dans un dossier",
+            "Thème": "1"
+        },
+        {
+            "code": "GF3",
+            "nom": "Gérer le contenu d'un dossier (ajouter/supprimer/renommer son contenu)",
+            "Thème": "1"
+        },
+        {
+            "code": "GF4",
+            "nom": "Déplacer un fichier / dossier",
+            "Thème": "1"
+        },
+        {
+            "code": "GF5",
+            "nom": "Changer les droits d'accès à un fichier / dossier,Gérer les droits d'un fichier/dossier",
+            "Thème": "1"
+        },
+        {
+            "code": "GF9",
+            "nom": "Rechercher un fichier",
+            "Thème": "1"
+        },
+        {
+            "code": "GF10",
+            "nom": "Visualiser le contenu d’un fichier et naviguer dedans",
+            "Thème": "1"
+        },
+        {
+            "code": "GF12",
+            "nom": "Créer un fichier depuis un éditeur de texte dans le terminal",
+            "Thème": "1"
+        },
+        {
+            "code": "GF7",
+            "nom": "Archiver / compresser une arborescence pour la transmettre",
+            "Thème": "1"
+        },
+        {
+            "code": "GF8",
+            "nom": "Installer une arborescence de fichiers depuis une archive",
+            "Thème": "1"
+        },
+        {
+            "code": "GF11",
+            "nom": "Lancer un l’exécution d’un fihcier + $PATH",
+            "Thème": "1"
+        },
+        {
+            "code": "GF13",
+            "nom": "(re)Connaitre le type d’un fichier",
+            "Thème": "1"
+        },
+        {
+            "code": "FC1",
+            "nom": "Sauvegarder le résultat d'une commande dans un fichier",
+            "Thème": "2"
+        },
+        {
+            "code": "FC2",
+            "nom": "Transmettre le résultat d'une commande à une autre",
+            "Thème": "2"
+        },
+        {
+            "code": "FC4",
+            "nom": "Retrouver les lignes de fichiers contenant une information",
+            "Thème": "2"
+        },
+        {
+            "code": "FC6",
+            "nom": "Donner le contenu d'un fichier en entrée à une commande",
+            "Thème": "2"
+        },
+        {
+            "code": "FC9",
+            "nom": "Assembler le contenu de fichiers",
+            "Thème": "2"
+        },
+        {
+            "code": "FC10",
+            "nom": "Substituer une partie d'un fichier",
+            "Thème": "2"
+        },
+        {
+            "code": "FC5",
+            "nom": "Comparer le contenu de deux fichiers",
+            "Thème": "2"
+        },
+        {
+            "code": "FC7",
+            "nom": "Récupérer certaines colonnes",
+            "Thème": "2"
+        },
+        {
+            "code": "FC8",
+            "nom": "Afficher les premières / dernières lignes d'un fichier",
+            "Thème": "2"
+        },
+        {
+            "code": "FC3",
+            "nom": "Rediriger les erreurs d'une commande vers un fichier",
+            "Thème": "2"
+        },
+        {
+            "code": "GP1",
+            "nom": "Consulter la liste des processus en activité",
+            "Thème": "3"
+        },
+        {
+            "code": "GP2",
+            "nom": "Savoir terminer un processus",
+            "Thème": "3"
+        },
+        {
+            "code": "GP3",
+            "nom": "Lancer un processus en arrière plan",
+            "Thème": "3"
+        },
+        {
+            "code": "GP4",
+            "nom": "Basculer un processus entre arrière plan et premier plan",
+            "Thème": "3"
+        },
+        {
+            "code": "GP8",
+            "nom": "Trier les processus en fonction de critères (consommation CPU, mémoire, ...)",
+            "Thème": "3"
+        },
+        {
+            "code": "GP6",
+            "nom": "Connaître l'utilisateur ayant lancé un processus",
+            "Thème": "3"
+        },
+        {
+            "code": "GP7",
+            "nom": "Changer la priorité d'un processus",
+            "Thème": "3"
+        },
+        {
+            "code": "VS1",
+            "nom": "comprendre un script",
+            "Thème": "4"
+        },
+        {
+            "code": "VS3",
+            "nom": "savoir itérer une ou plusieurs commandes",
+            "Thème": "4"
+        },
+        {
+            "code": "VS4",
+            "nom": "Gérer les variables (définition, état)",
+            "Thème": "4"
+        },
+        {
+            "code": "VS8",
+            "nom": "manipuler les variables d'environnement (PATH, SHELL, HOME, ...)",
+            "Thème": "4"
+        },
+        {
+            "code": "VS7",
+            "nom": "lancer un job de calcul (qsub,...)",
+            "Thème": "4"
+        },
+        {
+            "code": "VS6",
+            "nom": "programme les exécutions d'un script (cron)",
+            "Thème": "4"
+        },
+        {
+            "code": "VS2",
+            "nom": "lancer un script au démarrage du système",
+            "Thème": "4"
+        },
+        {
+            "code": "CR1",
+            "nom": "Se connecter à une machine distance pour y exécuter des commandes   ",
+            "Thème": "5"
+        },
+        {
+            "code": "CR2",
+            "nom": "Copier des fichiers/dossiers entre machines",
+            "Thème": "5"
+        },
+        {
+            "code": "CR3",
+            "nom": "Tester l'accessibilité d'une machine (ping)",
+            "Thème": "5"
+        },
+        {
+            "code": "CR4",
+            "nom": "Trouver l'adresse IP d'une machine",
+            "Thème": "5"
+        },
+        {
+            "code": "CR5",
+            "nom": "Savoir quelles machines sont disponibles sur un réseau",
+            "Thème": "5"
+        },
+        {
+            "code": "CR7",
+            "nom": "Synchroniser plusieurs espaces de stockage",
+            "Thème": "5"
+        },
+        {
+            "code": "CR8",
+            "nom": "Distinguer les protocoles associés aux différents types de communication",
+            "Thème": "5"
+        },
+        {
+            "code": "CR6",
+            "nom": "Savoir quels services sont accessibles (ports sont ouverts) sur le réseau",
+            "Thème": "5"
+        },
+        {
+            "code": "AS5",
+            "nom": "Installer un logiciel",
+            "Thème": "6"
+        },
+        {
+            "code": "AS6",
+            "nom": "Ajouter un programme / une commande au système (dossiers /bin, ...)",
+            "Thème": "6"
+        },
+        {
+            "code": "AS1",
+            "nom": "gérer les utilisateurs",
+            "Thème": "6"
+        },
+        {
+            "code": "AS2",
+            "nom": "configurer les connexions réseaux",
+            "Thème": "6"
+        },
+        {
+            "code": "AS3",
+            "nom": "configurer le nom de la machine",
+            "Thème": "6"
+        },
+        {
+            "code": "AS4",
+            "nom": "Configurer les ports réseaux permettant d'accéder à la machine",
+            "Thème": "6"
+        },
+        {
+            "code": "AS9",
+            "nom": "Permettre l'accès à des supports de stockage externes (clef USB, dd externe, disque réseau)",
+            "Thème": "6"
+        },
+        {
+            "code": "AS13",
+            "nom": "Connaître les ports habituellement associés aux différents services réseaux",
+            "Thème": "6"
+        },
+        {
+            "code": "AS10",
+            "nom": "Gérer les sauvegardes du système de fichiers",
+            "Thème": "6"
+        },
+        {
+            "code": "AS11",
+            "nom": "Comprendre les logs système",
+            "Thème": "6"
+        },
+        {
+            "code": "AS12",
+            "nom": "Permettre l'accès au système depuis l'extérieur (ssh, ...)",
+            "Thème": "6"
+        }
+    ]
+}
