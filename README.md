@@ -26,7 +26,7 @@ The app is intended to run as a couple of containers:
 - one for the monolith
 - one for the database
 
-So you need docker installed (v25 and v26 have been tested but older version should also work). Alternatively, you could easily migrate to kubernetes or even manually start its component one by one with appropriate changes in the code (port numbers, variables).
+So you need docker installed (v25 and v26 have been tested but older version should also work). Alternatively, you could easily migrate to kubernetes or even manually start its components one by one with appropriate changes in the code (port numbers, variables).
 
 ## Content
 

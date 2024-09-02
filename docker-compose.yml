@@ -2,7 +2,7 @@
 services:
   back:
     container_name: back
-    image: icws24submission/back_monolith
+    image: icws24/back_monolith
     security_opt:
       - no-new-privileges:true
     ports:
@@ -14,7 +14,7 @@ services:
 
   postgres:
     container_name: postgres
-    image: icws24submission/postgres_monolith
+    image: icws24/postgres_monolith
     restart: always
     env_file:
       - variables.env
