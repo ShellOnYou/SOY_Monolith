@@ -1,6 +1,6 @@
 #!/bin/bash
-imagecontent=("back" "soy-monolith-db")
-imagename=("icws24submission/postgres_monolith" "icws24submission/back_monolith" )
+imagecontent=("soy-monolith-db" "back")
+imagename=("icws24/postgres_monolith" "icws24/back_monolith" )
 
 
 for i in "${!imagecontent[@]}"; do
