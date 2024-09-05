@@ -1,5 +1,5 @@
 #!/bin/bash
-imagecontent=("soy-monolith-db" "back")
+imagecontent=("soy-monolith-postgres" "back")
 imagename=("icws24submission/postgres_monolith" "icws24submission/back_monolith" )
 
 
