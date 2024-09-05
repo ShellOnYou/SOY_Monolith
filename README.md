@@ -23,8 +23,8 @@ Nota that this version of the app is only proposed for scientific purposes (repl
 Note that the database proposed here contains just one exercise. Instructors can contact us to have access to a private repo containing more exercises (not exposed to students ;-).
 
 The app is intended to run as a couple of containers:
-- one for the monolith
-- one for the database
+- one for the backend of the monolith
+- one for the database server
 
 So you need docker installed (v25 and v26 have been tested but older version should also work). Alternatively, you could easily migrate to kubernetes or even manually start its components one by one with appropriate changes in the code (port numbers, variables).
 
@@ -32,8 +32,7 @@ So you need docker installed (v25 and v26 have been tested but older version sho
 
 This directory contains two folders:
 - `back`: code for the monolith.
-- `soy-monolith-db`: the *database* of the app.
-
+- `soy-monolith-postgres`: to build the image of the app's database server
 
 ## Building or getting the app
 
@@ -42,7 +41,7 @@ Once you have cloned the content of this repo, to get the app you either need to
 ### Building the app:
 
 - `cd` to the root of this repo, i.e. that containing (`variables.env`).
-- run the `./build.sh` command (this builds the docker images one after the other).
+- run the `./build.sh` command (this builds the docker images one after the other). This generates a docker image for the backend of the app, and another image for the postgres server giving access to the database of the app.
 
 ### Getting the app from DockerHub:
 
@@ -56,11 +55,9 @@ In case of problem also refer to [Docker Hub](https://hub.docker.com/repository/
 ## Configuring the app
 
 ### Setting up the app
-- Go with the `cd` to the `soy-monolith-db` folder.
-
-- If the DB is compressed (`.tgz` file), uncompress it by typing: `tar xzf v4-soy-db.tgz`. This should create a `v4-soy-db` folder. Check by `ls -l` that the permissions are `7xx` on this folder (i.e. the user has all permissions).
-
-- Type `cd ..` to return to the root folder of this repo
+- If the database is compressed (`.tgz` file at the root folder of this archive), uncompress it by typing: `tar xzf v4-soy-db.tgz`. 
+This should create a `v4-soy-db` folder. To avoid pemission problems you should go `chmod -R 777 v4-soy-db` then check with 
+`ls -l` that the permissions are `7xx` on this folder.
 
 - Modify the `variables.env` file according to your environment requirements.
 
@@ -92,6 +89,9 @@ The DB in its current state contains a large number of user accounts for load te
 - teacher1@yopmail.com / `plageCT`
 - teacher2@yopmail.com / `plageVB`
 - student@yopmail.com / `toto`
+
+To manually connect to the database once the server is launched you can run 
+`docker exec -it postgres psql -U plagedba -d plagedb` then enter `\d` in the psql prompt to see the tables, for instance.
 
 --- 
 ## How to cite
