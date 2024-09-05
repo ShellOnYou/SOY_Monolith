@@ -181,7 +181,7 @@ def end_if_no_more_answer_lines(tests, results, explains, num_test, lines):
         if locale == "en":
             explains[num_test] = ' The file with answers does not contain enough answer lines.'
         elif locale == 'fr':
-            explains[num_test] = ' Le fichier de réponses ne contient pas assez de lignes de réponses.'
+            explains[num_test] = ' Le fichier de reponses ne contient pas assez de lignes de reponses.'
         end_analysis(tests, results, explains)
 
 
@@ -195,7 +195,7 @@ def extract_expected_folder_from_submitted_archive(submitted, expected):
             Expl += "Please check how you create it."
         elif locale == "fr":
             Expl = "Le fichier que vous proposez n'est pas vraiment une archive.<br/>"
-            Expl += "Vérifiez la façon dont vous l'avez créée."
+            Expl += "Verifiez la facon dont vous l'avez cree."
         addLog('File '+submitted +
                ' is not a tarfile (likely the student tried to fool the app)')
         return(False, Expl)
@@ -222,8 +222,8 @@ def extract_expected_folder_from_submitted_archive(submitted, expected):
                 Expl += "<strong>Reminder</strong> : to include the content of a folder <code>ABC</code>"
                 Expl += " in an archive, go to the parent folder of <code>ABC</code>."
             elif locale == "fr":
-                Expl += "<br/>Le premier élément dans votre archive commence par '..', "
-                Expl += "probablement en raison de l'endroit où vous avez créé votre archive."
+                Expl += "<br/>Le premier element dans votre archive commence par '..', "
+                Expl += "probablement en raison de l'endroit ou vous avez cree votre archive."
                 Expl += "<strong>Rappel</strong> : pour mettre le contenu d'un dossier <code>ABC</code>"
                 Expl += " dans une archive, placez-vous dans le dossier parent de <code>ABC</code>."
         tar.close()
@@ -301,7 +301,7 @@ def ok_to_open(a_file):
         if locale == "en":
             Expl = "File "+a_file+" not found in submitted archive"
         elif locale == "fr":
-            Expl = "Fichier "+a_file+" non trouvé dans l'archive remise"
+            Expl = "Fichier "+a_file+" non trouve dans l'archive remise"
         addLog('File '+a_file+' not found in submitted archive')
         return(False, Expl)
     # Check that user has read permission on this file (they might have done anything playing with permissions)
@@ -309,7 +309,7 @@ def ok_to_open(a_file):
         if locale == 'en':
             Expl = "File " + a_file + " found but no read permission on it"
         elif locale == 'fr':
-            Expl = "Fichier "+a_file+" trouvé dans l'archive remise mais sans droit d'exécution"
+            Expl = "Fichier "+a_file+" trouve dans l'archive remise mais sans droit d'execution"
         addLog('File '+a_file+' found but no read permission on it')
         return(False)
     if locale == 'en':
@@ -334,7 +334,7 @@ def compute_status(results):
             if locale == 'en':
                 status.append("not tested")
             else:
-                status.append("non testé")
+                status.append("non teste")
         elif r is True:
             status.append("OK")
         else:
@@ -378,7 +378,7 @@ def build_json_comment_v2(tests, results, explains):
             if locale == "en":
                 js += '"not tested"'
             elif locale == "fr":
-                js += '"pas testé"'
+                js += '"pas teste"'
         elif results[t] is True:
             js += '"OK"'
         else: # result is False
@@ -414,7 +414,7 @@ def build_json_comment(tests, results, explains):
             if locale == "en":
                 js += '"not tested"'
             elif locale == "fr":
-                js += '"pas testé"'
+                js += '"pas teste"'
         elif results[t] is True:
             js += '"OK"'
         else: # result is False
@@ -440,9 +440,9 @@ def build_html_comment(tests, results, explains, gradeNB):
           <table class="result_analyse">
             <tr><th>Test #</th><th>Verification</th><th>State</th><th>Explanations</th></tr>\n"""
     elif locale == "fr":
-        buffer += """<h2>Résultat de l'analyse</h2>   
+        buffer += """<h2>Resultat de l'analyse</h2>   
           <table class="result_analyse">
-             <tr><th>N° test</th><th>Vérification</th><th>Etat</th><th>Explication</th></tr>\n"""
+             <tr><th>N test</th><th>Verification</th><th>Etat</th><th>Explication</th></tr>\n"""
     num = 0
     for t in range(len(tests)):
         num += 1
@@ -453,7 +453,7 @@ def build_html_comment(tests, results, explains, gradeNB):
             if locale == "en":
                 buffer += '<td><div class="expl"> not tested</div></td>'
             elif locale == "fr":
-                buffer += '<td><div class="expl"> pas testé</div></td>'
+                buffer += '<td><div class="expl"> pas teste</div></td>'
         elif results[t] is True:
             buffer += '<td><div class="ok">OK</div></td>'
             if len(explains[t]) > 4:  # if non trivial comment, output it
@@ -479,7 +479,7 @@ def build_html_comment(tests, results, explains, gradeNB):
     #re.sub("'", "\\'",buffer)
     buffer = buffer.replace(r"'",r"\'")
     
-    #if re.search("Résultat de l'analyse",buffer):
+    #if re.search("Resultat de l'analyse",buffer):
     #        print ('TROUVE')
     #        sys.exit()
 
