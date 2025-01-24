@@ -9,6 +9,15 @@ module.exports.create = async function (req, res) {
   if (!req.body) {
     //Invalid request
     res.status(400).end();
+    return;
+  }
+
+  // Check required fields
+  if (!req.body.job || !req.body.sector) {
+    return res.status(400).json({
+      error: "Bad Request",
+      message: "Les champs 'job' et 'sector' sont obligatoires."
+    });
   }
 
   const data = {
