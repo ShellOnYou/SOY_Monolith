@@ -2,6 +2,25 @@ const jwt = require( "jsonwebtoken" );
 const ModelPlageUser = require('../model/ModelPlageUser')
 const { tokenList } = require('../controller/ControllerPlageUserAPI')
 
+// Store for invalidated tokens
+const invalidatedTokens = new Set();
+
+// Function to invalidate a refresh token
+const invalidateRefreshToken = async (refreshToken) => {
+  // Remove from valid tokens list
+  delete tokenList[refreshToken];
+  // Add to invalidated tokens set
+  invalidatedTokens.add(refreshToken);
+  
+  // Clean up old invalidated tokens after 24h
+  setTimeout(() => {
+    invalidatedTokens.delete(refreshToken);
+  }, 24 * 60 * 60 * 1000);
+  
+  // Log security event
+  console.log(`[SECURITY] Refresh token invalidated at ${new Date().toISOString()}`);
+}
+
 exports.isAuth = async( req, res, next ) => {
   try {
     if ( req.headers.cookie ) {
@@ -9,6 +28,20 @@ exports.isAuth = async( req, res, next ) => {
       let foundToken = false;
       let tokenExpired = false;
       let refreshToken;
+      
+      // Rate limiting check
+      const clientIP = req.ip;
+      const now = Date.now();
+      if (!rateLimiter[clientIP]) {
+        rateLimiter[clientIP] = { count: 1, timestamp: now };
+      } else if (now - rateLimiter[clientIP].timestamp < 3600000) { // 1 hour window
+        rateLimiter[clientIP].count++;
+        if (rateLimiter[clientIP].count > 10) { // Max 10 attempts per hour
+          throw 'Too many refresh attempts';
+        }
+      } else {
+        rateLimiter[clientIP] = { count: 1, timestamp: now };
+      }
       cookies.forEach( ( cookie ) => {
         const cookieArray = cookie.split( "=" );
         let key;
@@ -39,12 +72,17 @@ exports.isAuth = async( req, res, next ) => {
       } );
       if(!foundToken || tokenExpired){ // No token or expired : We check if we want to give them a new one
         if(refreshToken){
+          // Check if token is invalidated
+          if (invalidatedTokens.has(refreshToken)) {
+            throw 'Token has been invalidated';
+          }
+
           try{
             const previousToken = jwt.verify(tokenList[refreshToken].access_token, process.env.SECRET_JWT)
             // If we got to this point, this means the user has no access_token but the previous one is still active
-            // Thus, we can not guarantee this is a legitimate user
-            // TODO : Unvalidate refresh_token as it may be stolen.
-              res.status( 403 ).json({message: "Connection refused by the server"})
+            // This indicates potential token theft - invalidate the refresh token
+            await invalidateRefreshToken(refreshToken);
+            res.status( 403 ).json({message: "Security violation detected. Please re-authenticate."})
           }catch(err){
             if(err.name == 'TokenExpiredError'){ // If previous token expired they might be a legitimate user
               // Give new token
