@@ -72,9 +72,9 @@ class ModelSequence extends Model {
       call(item, this.getAllExercises, tabSeq);
     });
 
-    while (cpt !== ids.size) {
+    while (cpt < ids.length) {
       await sleep(500);
-      return tabSeq;
+      cpt++;
     }
 
     async function call(item, getAllExercises, tabSeq) {
